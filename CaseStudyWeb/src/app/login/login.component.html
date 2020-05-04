@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="card">
+        <h5 class="card-header">WELCOME!</h5>
+        <div class="card-body" *ngIf="!proceed">
+            LOGIN AS: <select [(ngModel)]="loginPerson">
+                <option *ngFor="let login of loginOptions">{{ login }}</option>
+            </select><br><br>
+            <button class="btn btn-primary" (click)="proceed = !proceed">Proceed</button>
+        </div>
+        <div class="card-body" *ngIf="proceed">
+            Logging in as: <strong>{{loginPerson}}</strong><br>
+            Username:&nbsp;<input type="email" [(ngModel)]="username">
+            Password:&nbsp;<input type="text" [(ngModel)]="password"><br><br>
+            <div style="margin-left: 50%;">
+                <button class="btn btn-primary" (click)="loginUser()" *ngIf="username && password">LOGIN</button>&nbsp;
+                <button class="btn btn-primary" (click)="proceed = false"> << Back</button>
+            </div>
+        </div>
+    </div>
+</div>
