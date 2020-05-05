@@ -1,0 +1,88 @@
+<div>
+    <div class="card">
+      <h5 class="card-header">Select your Car</h5>
+      <div class="card-body">
+        <nav>
+          <button class="btn btn-primary" (click)="typeFlag='SUV'">SUV</button>&nbsp;
+          <button class="btn btn-primary" (click)="typeFlag='Sedan'">Sedan</button>&nbsp;
+          <button class="btn btn-primary" (click)="typeFlag='HB'">Hatchback</button>&nbsp;
+        </nav>
+        <table class="table table-striped" *ngIf="typeFlag === 'SUV'">
+          <thead>
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Car Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Car Type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let suv of carDetailsTableSUV; index as i">
+            <th><input type="radio" name="suv" [value]="suv.name" [(ngModel)]="suvData"></th>
+            <td>{{ suv.name }}</td>
+            <td>{{ suv.brand }}</td>
+            <td>{{ suv.category }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <table class="table table-striped" *ngIf="typeFlag === 'Sedan'">
+          <thead>
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Car Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Car Type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sedan of carDetailsTableSedan; index as i">
+            <th><input type="radio" name="sedan" [value]="sedan.name" [(ngModel)]="sedanData"></th>
+            <td>{{ sedan.name }}</td>
+            <td>{{ sedan.brand }}</td>
+            <td>{{ sedan.category }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <table class="table table-striped" *ngIf="typeFlag === 'HB'">
+          <thead>
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Car Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Car Type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let hb of carDetailsTableHB; index as i">
+            <th><input type="radio" name="hb" [value]="hb.name" [(ngModel)]="hbData"></th>
+            <td>{{ hb.name }}</td>
+            <td>{{ hb.brand }}</td>
+            <td>{{ hb.category }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <h5 class="card-header">Select Wash Package</h5>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Package Name</th>
+            <th scope="col">Price</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let carwash of carWashData; index as i">
+            <th><input type="radio" name="carwash" [value]="carwash.packageValue" [(ngModel)]="carWashPackage"></th>
+            <td>{{ carwash.packageValue }}</td>
+            <td>{{ carwash.price }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="btn btn-primary" (click)="proceedToPayment()">Proceed</button>
+    </div>
+</div>

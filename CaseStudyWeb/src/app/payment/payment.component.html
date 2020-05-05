@@ -1,0 +1,18 @@
+<div>
+    <div class="card">
+        <h5 class="card-header">Payment</h5>
+        <div class="card-body">
+            Please select the payment mode:&nbsp;
+            <select [(ngModel)]="selectedPaymentMode">
+                <option *ngFor="let payment of payments">
+                    {{ payment }}
+                </option>
+            </select><br><br>
+            <span style="color:red;">Note: Currently all other mode of payment has been disabled. Please opt for Cash On
+                Delivery(COD)</span><br><br>
+                <button class="btn btn-primary" (click)="proceedToPayment()">Proceed</button>
+            <div *ngIf="generateReceipt">
+            </div>
+        </div>
+    </div>
+</div>
