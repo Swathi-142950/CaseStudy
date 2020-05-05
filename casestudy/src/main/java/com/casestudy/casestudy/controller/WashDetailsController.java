@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.casestudy.casestudy.exception.CaseStudyException;
-import com.casestudy.casestudy.model.Cars;
-import com.casestudy.casestudy.operations.CarDetailsOperations;
+import com.casestudy.casestudy.model.WashPackage;
+import com.casestudy.casestudy.operations.WashDetailsOperations;
 
 @RestController
-@RequestMapping("/cars")
+@RequestMapping("/wash")
 @CrossOrigin(origins = "http://localhost:4200")
-public class CarDetailsController {
+public class WashDetailsController {
 
 	@Autowired
-	CarDetailsOperations carDetailsOp;
+	WashDetailsOperations washDetailsOp;
 
-	@RequestMapping(value="/fetchCars", method=RequestMethod.GET)
-	public ResponseEntity<List<Cars>> fetchCarDetails() throws CaseStudyException {
-		List<Cars> carList = carDetailsOp.fetchCarDetails();
+	@RequestMapping(value="/fetchWashPackages", method=RequestMethod.GET)
+	public ResponseEntity<List<WashPackage>> fetchCarDetails() throws CaseStudyException {
+		List<WashPackage> carList = washDetailsOp.fetchWashDetails();
 		return new ResponseEntity<>(carList, HttpStatus.OK);
 	}
 }
