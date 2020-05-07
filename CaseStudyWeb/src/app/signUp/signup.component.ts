@@ -1,7 +1,34 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { SignUpService } from './signup.service';
 
 @Component({
     selector: 'signup',
-    templateUrl: 'signup.component.html'
+    templateUrl: 'signup.component.html',
+    providers: [SignUpService]
 })
-export class SignupComponent {}
+export class SignupComponent {
+    email:string
+    password:string
+    username:string
+
+    constructor(private router:Router, private signUpService:SignUpService) {
+    }
+
+    signUp():void {
+        if (this.email && this.password && this.username) {
+            let obj = {
+                'email': this.email,
+                'password': this.password,
+                'username': this.username,
+                'role': 'customer'
+            }
+            this.signUpService.saveUsers(obj).subscribe(data => {
+                alert(data)
+                this.router.navigate(['/login'])
+            })
+        } else {
+            alert('Please enter all the required details')
+        }
+    }
+}

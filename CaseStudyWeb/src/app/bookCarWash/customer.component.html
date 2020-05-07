@@ -5,7 +5,7 @@
                 <h4 class="card-title">Customer Details Form</h4>
                 <form (ngSubmit)="submitData()" [formGroup]="customerForm">
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-10">
                             <div class="row">
                                 <div class="col-sm-4">Name:</div>
                                 <div class="col-sm-8"><input type="text" formControlName="customer_name" /></div>
@@ -26,6 +26,25 @@
                                 <div class="col-sm-8"> <input type="text" formControlName="customer_vehicle_number" />
                                 </div>
                             </div><br>
+                            <div class="row">
+                                <div class="col-sm-4">Schedule the date of wash:</div>
+                                <div class="col-sm-4">
+                                    <mat-form-field>
+                                        <input matInput [matDatepicker]="picker" placeholder="Choose a date"
+                                            formControlName="customer_service_date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-sm-4">Schedule the time of wash:</div>
+                                <div class="col-sm-4">
+                                    <select formControlName="customer_service_time">
+                                        <option *ngFor="let timeSlot of serviceTimeOptions">{{timeSlot}}</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <button class="btn btn-primary" type="submit">

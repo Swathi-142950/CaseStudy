@@ -21,6 +21,10 @@ export class CarwashComponent{
     sedanData:string
     hbData:string
     carWashPackage:string
+    addData:Object
+    addDataBrand:string
+    addDataModel:string
+    addDataType:string
     constructor (private carWashService:CarWashComponentService, private router: Router) {}
 
     ngOnInit() {
@@ -36,7 +40,7 @@ export class CarwashComponent{
     }
 
     proceedToPayment() {
-        if (this.carWashPackage && (this.suvData || this.sedanData || this.hbData)) {
+        if (this.carWashPackage && (this.suvData || this.sedanData || this.hbData || (this.addDataBrand && this.addDataModel && this.addDataType))) {
             this.router.navigate(['/payment'])
         } else {
             alert('Please select package and car to proceed')

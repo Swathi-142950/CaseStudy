@@ -10,10 +10,12 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signUp/signup.component';
 import { CarwashComponent } from './bookCarWash/carwash.component';
-import { PaymentComponent } from './payment/payment.component'
+import { PaymentComponent } from './payment/payment.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angular/material';
 
 @NgModule({
-    imports: [BrowserModule, FormsModule,ReactiveFormsModule, RouterModule.forRoot([
+    imports: [BrowserModule, FormsModule,MatDatepickerModule, MatInputModule, MatNativeDateModule, ReactiveFormsModule, RouterModule.forRoot([
         {path: 'home', component: HomeComponent},
         {path: 'login', component: LoginComponent},
         {path: 'signup', component: SignupComponent},
@@ -23,7 +25,7 @@ import { PaymentComponent } from './payment/payment.component'
         {path: '', redirectTo: 'home', pathMatch:'full'}
     ]),RouterModule.forChild([
         {path: 'aboutUs', component: AboutUsComponent, outlet: 'secondary'}
-    ]),HttpClientModule],
+    ]),HttpClientModule, BrowserAnimationsModule],
     declarations: [AppComponent, HomeComponent, AboutUsComponent, PaymentComponent, CarwashComponent, CustomerComponent, LoginComponent, SignupComponent],
     bootstrap: [AppComponent]
 })
