@@ -12,6 +12,20 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
+	private String phoneno;
+	private String fullname;
+	public String getPhoneno() {
+		return phoneno;
+	}
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
 	public int getId() {
 		return id;
 	}

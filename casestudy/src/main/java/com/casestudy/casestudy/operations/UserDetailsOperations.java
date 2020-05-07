@@ -22,5 +22,12 @@ public class UserDetailsOperations {
 		return userDetailsRepo.save(user);
 	}
 	
+	public List<User> fetchUsersByRole(String role) {
+		return userDetailsRepo.findByRole(role);
+	}
+	
+	public User fetchUserById(int id) {
+		return userDetailsRepo.findById(id);
+	}
 }
 

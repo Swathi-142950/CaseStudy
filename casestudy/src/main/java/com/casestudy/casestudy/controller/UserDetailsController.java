@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,15 +33,27 @@ public class UserDetailsController {
 	}
 	
 	@PostMapping("/saveUser")
-	public ResponseEntity<String> saveUsers(@RequestBody User user) throws CaseStudyException {
+	public ResponseEntity<User> saveUsers(@RequestBody User user) throws CaseStudyException {
 		Random random = new Random();
 		user.setId(random.nextInt(100));
 		User userResponse = userDetailsOp.saveUsers(user);
 		if (null != userResponse) {
-			return new ResponseEntity<>("Saved Successfully", HttpStatus.OK);
+			return new ResponseEntity<>(userResponse, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("Save not successful", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(userResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
+	@GetMapping("/loginByRole/{role}")
+	public ResponseEntity<List<User>> fetchUsersByRole(@PathVariable String role) throws CaseStudyException {
+		List<User> userList = userDetailsOp.fetchUsersByRole(role);
+		return new ResponseEntity<>(userList, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/fetchUserById/{id}")
+	public ResponseEntity<User> fetchUserById(@PathVariable int id) throws CaseStudyException {
+		User user = userDetailsOp.fetchUserById(id);
+		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
 }
