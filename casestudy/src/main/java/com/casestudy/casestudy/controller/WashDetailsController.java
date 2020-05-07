@@ -15,7 +15,7 @@ import com.casestudy.casestudy.model.WashPackage;
 import com.casestudy.casestudy.operations.WashDetailsOperations;
 
 @RestController
-@RequestMapping("/wash")
+@RequestMapping("/api/wash")
 @CrossOrigin(origins = "http://localhost:4200")
 public class WashDetailsController {
 

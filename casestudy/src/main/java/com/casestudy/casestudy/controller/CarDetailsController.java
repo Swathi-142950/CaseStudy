@@ -15,7 +15,7 @@ import com.casestudy.casestudy.model.Cars;
 import com.casestudy.casestudy.operations.CarDetailsOperations;
 
 @RestController
-@RequestMapping("/cars")
+@RequestMapping("/api/cars")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CarDetailsController {
 
