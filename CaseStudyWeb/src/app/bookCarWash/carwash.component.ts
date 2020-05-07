@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CarDetails } from '../models/CarDetails'
+import { CarDetails } from '../models/car.details.model'
 import { CarWashComponentService } from './carwash.service'
 import * as _ from 'lodash'
 import { Router } from '@angular/router';
