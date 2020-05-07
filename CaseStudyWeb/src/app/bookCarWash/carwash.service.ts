@@ -13,4 +13,8 @@ export class CarWashComponentService {
     fetchWashPackages () {
         return this.httpClient.get(constants.baseUrl + '/wash/fetchWashPackages')
     }
+
+    fetchUserDetailsById (id:number) {
+        return this.httpClient.get(constants.baseUrl + `/users/fetchUserById/${id}`)
+    }
 }

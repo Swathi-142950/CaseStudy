@@ -11,6 +11,8 @@ export class SignupComponent {
     email:string
     password:string
     username:string
+    fullname:string
+    phoneno:string
 
     constructor(private router:Router, private signUpService:SignUpService) {
     }
@@ -21,10 +23,11 @@ export class SignupComponent {
                 'email': this.email,
                 'password': this.password,
                 'username': this.username,
+                'fullname': this.fullname,
+                'phoneno': this.phoneno,
                 'role': 'customer'
             }
             this.signUpService.saveUsers(obj).subscribe(data => {
-                alert(data)
                 this.router.navigate(['/login'])
             })
         } else {

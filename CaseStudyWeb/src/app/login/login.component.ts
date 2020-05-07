@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from './login.service';
+import * as _ from 'lodash'
 
 @Component({
     selector: 'login',
-    templateUrl: 'login.component.html'
+    templateUrl: 'login.component.html',
+    providers:[LoginService]
 })
 export class LoginComponent {
     loginOptions:Array<string>
@@ -12,17 +15,20 @@ export class LoginComponent {
     username:string
     password:string
 
-    constructor(private router:Router) {
-        this.loginOptions = ['Customer', 'Washer', 'Admin'],
-        this.loginPerson = 'Admin'
+    constructor(private router:Router, private loginService: LoginService) {
+        this.loginOptions = ['customer', 'washer', 'admin'],
+        this.loginPerson = 'admin'
         this.proceed = false
     }
 
     loginUser():void {
         if (this.username && this.password) {
-            if (this.loginPerson === 'Customer') {
-                this.router.navigate(['customer'])
-            }
+            this.loginService.fetchUserByRole(this.loginPerson).subscribe(data => {
+                let found = _.find(data, {'username': this.username, 'password': this.password})
+                if (found) {
+                    this.router.navigate([`${this.loginPerson}/${found['id']}`])
+                }
+            })
         }
     }
 }

@@ -3,17 +3,25 @@
         <h5 class="card-header">Sign Up</h5>
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-2">Email id: </div>
-                <div class="col-sm-6"><input type="email" [(ngModel)]="email"></div>
+                <div class="col-sm-2">Username: </div>
+                <div class="col-sm-6"><input type="text" [(ngModel)]="username"></div><br>
+            </div><br>
+            <div class="row">
+                <div class="col-sm-2">Full Name: </div>
+                <div class="col-sm-6"><input type="text" [(ngModel)]="fullname"></div>
             </div><br>
             <div class="row">
                 <div class="col-sm-2">Password: </div>
                 <div class="col-sm-6"><input type="password" [(ngModel)]="password"></div>
             </div><br>
             <div class="row">
-                <div class="col-sm-2">Username: </div>
-                <div class="col-sm-6"><input type="text" [(ngModel)]="username"></div><br>
-            </div>
+                <div class="col-sm-2">Email id: </div>
+                <div class="col-sm-6"><input type="email" [(ngModel)]="email"></div>
+            </div><br>
+            <div class="row">
+                <div class="col-sm-2">Phone number: </div>
+                <div class="col-sm-6"><input type="password" [(ngModel)]="phoneno"></div>
+            </div><br>
             <button class="btn btn-primary" (click)="signUp()">Sign Up</button>
         </div>
     </div>

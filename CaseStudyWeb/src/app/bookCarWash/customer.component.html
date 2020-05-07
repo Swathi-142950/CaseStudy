@@ -1,6 +1,10 @@
 <div>
     <div>
-        <div class="card">
+        <nav>
+            <button class="btn btn-primary" (click)="showFlag='BookWash'">Book Car Wash</button>&nbsp;
+            <button class="btn btn-primary" (click)="showFlag='EditProfile'">Edit your profile</button>&nbsp;
+        </nav>
+        <div class="card" *ngIf="showFlag === 'BookWash'">
             <div class="card-body">
                 <h4 class="card-title">Customer Details Form</h4>
                 <form (ngSubmit)="submitData()" [formGroup]="customerForm">
@@ -8,23 +12,39 @@
                         <div class="col-sm-10">
                             <div class="row">
                                 <div class="col-sm-4">Name:</div>
-                                <div class="col-sm-8"><input type="text" formControlName="customer_name" /></div>
+                                <div class="col-sm-8"><input type="text" pattern="[A-Za-z]{3}[A-Za-z ]+"
+                                        formControlName="customer_name" /></div>
                             </div>
-                            <div><span style="color: red;">Please make sure you enter the
-                                    name is as specified in a govt id proof</span></div>
+                            <div *ngIf="(customerForm.get('customer_name').dirty || customerForm.get('customer_name').touched) && customerForm.get('customer_name').invalid"
+                                class="alert alert-danger">
+                                Name is required and of minimum 3 characters consisting of only alphabets
+                            </div>
                             <br>
                             <div class="row">
                                 <div class="col-sm-4">Phone number:</div>
-                                <div class="col-sm-8"> <input type="text" formControlName="customer_phone" /></div>
+                                <div class="col-sm-8"> <input type="text" pattern="^[1-9]{1}[0-9]{9}$"
+                                        formControlName="customer_phone" /></div>
+                            </div>
+                            <div *ngIf="(customerForm.get('customer_phone').dirty || customerForm.get('customer_phone').touched) && customerForm.get('customer_phone').invalid"
+                                class="alert alert-danger">Phone number must consist of only numbers, consisting of 10
+                                digits
                             </div><br>
                             <div class="row">
                                 <div class="col-sm-4">Address:</div>
                                 <div class="col-sm-8"> <input type="textbox" formControlName="customer_address" /></div>
+                            </div>
+                            <div *ngIf="(customerForm.get('customer_address').dirty || customerForm.get('customer_address').touched) && customerForm.get('customer_address').invalid"
+                                class="alert alert-danger">Address is mandatory
                             </div><br>
                             <div class="row">
                                 <div class="col-sm-4">Vehicle Number:</div>
-                                <div class="col-sm-8"> <input type="text" formControlName="customer_vehicle_number" />
+                                <div class="col-sm-8"> <input type="text"
+                                        pattern="^[A-Z]{2}[0-9]{2}[A-Z0-9]{1,2}[A-Z0-9]{4}$"
+                                        formControlName="customer_vehicle_number" />
                                 </div>
+                            </div>
+                            <div *ngIf="(customerForm.get('customer_vehicle_number').dirty || customerForm.get('customer_vehicle_number').touched) && customerForm.get('customer_vehicle_number').invalid"
+                                class="alert alert-danger">Enter a valid Vehicle number
                             </div><br>
                             <div class="row">
                                 <div class="col-sm-4">Schedule the date of wash:</div>
@@ -34,6 +54,8 @@
                                             formControlName="customer_service_date">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
+                                        <mat-error *ngIf="customerForm.get('customer_service_date').invalid">Please
+                                            enter the date of service</mat-error>
                                     </mat-form-field>
                                 </div>
                             </div><br>
@@ -47,11 +69,16 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary" type="submit" [disabled]="customerForm.invalid">
                         Submit
                     </button>
                 </form>
             </div>
+        </div>
+        <div class="card" *ngIf="showFlag === 'EditProfile'">
+          <div class="card-body">
+              Current Details:
+          </div>
         </div>
     </div>
 </div>

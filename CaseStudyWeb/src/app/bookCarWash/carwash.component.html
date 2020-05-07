@@ -8,25 +8,6 @@
         <button class="btn btn-primary" (click)="typeFlag='HB'">Hatchback</button>&nbsp;
         <button class="btn btn-success" (click)="typeFlag='Add'">Add a new car</button>
       </nav><br>
-      <div *ngIf="typeFlag === 'Add'">
-        <div class="row">
-          <div class="col-sm-3">Brand: </div>
-          <div class="col-sm-4"><input type="text" [(ngModel)]="addDataBrand"></div>
-        </div><br>
-        <div class="row">
-          <div class="col-sm-3">Model Name:</div>
-          <div class="col-sm-4"><input type="text" [(ngModel)]="addDataModel"></div>
-        </div><br>
-        <div class="row">
-          <div class="col-sm-3">Car type:</div>
-          <div class="col-sm-4">
-            <select [(ngModel)]="addDataType">
-              <option value="SUV">SUV</option>
-              <option value="Sedan">Sedan</option>
-              <option value="Hatchback">Hatchback</option>
-            </select>
-          </div>
-        </div>
         <table class="table table-striped" *ngIf="typeFlag === 'SUV'">
           <thead>
             <tr>
@@ -81,6 +62,25 @@
             </tr>
           </tbody>
         </table>
+        <div *ngIf="typeFlag === 'Add'">
+          <div class="row">
+            <div class="col-sm-3">Brand: </div>
+            <div class="col-sm-4"><input type="text" [(ngModel)]="addDataBrand"></div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm-3">Model Name:</div>
+            <div class="col-sm-4"><input type="text" [(ngModel)]="addDataModel"></div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm-3">Car type:</div>
+            <div class="col-sm-4">
+              <select [(ngModel)]="addDataType">
+                <option value="SUV">SUV</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Hatchback">Hatchback</option>
+              </select>
+            </div>
+          </div>
       </div>
     </div>
     <div class="card">

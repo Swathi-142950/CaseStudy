@@ -7,6 +7,6 @@ export class LoginService {
     constructor(private httpClient:HttpClient) {}
 
     fetchUserByRole(role:string) {
-        return this.httpClient.get(constants.baseUrl + `/login/${role}`)
+        return this.httpClient.get(constants.baseUrl + `/users/loginByRole/${role}`)
     }
 }
