@@ -29,5 +29,16 @@ public class UserDetailsOperations {
 	public User fetchUserById(int id) {
 		return userDetailsRepo.findById(id);
 	}
+
+	public User updateUser(User user, int id) {
+		User foundUser = userDetailsRepo.findById(id);
+		if (null != foundUser) {
+			foundUser.setEmail(user.getEmail());
+			foundUser.setFullname(user.getFullname());
+			foundUser.setPhoneno(user.getPhoneno());
+		}
+		userDetailsRepo.save(foundUser);
+		return foundUser;
+	}
 }
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class UserDetailsController {
 	@PostMapping("/saveUser")
 	public ResponseEntity<User> saveUsers(@RequestBody User user) throws CaseStudyException {
 		Random random = new Random();
-		user.setId(random.nextInt(100));
+		user.setId(random.nextInt(1000));
 		User userResponse = userDetailsOp.saveUsers(user);
 		if (null != userResponse) {
 			return new ResponseEntity<>(userResponse, HttpStatus.OK);
@@ -56,4 +57,11 @@ public class UserDetailsController {
 		User user = userDetailsOp.fetchUserById(id);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
+	
+	@PutMapping("/updateUser/{id}")
+	public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable int id) throws CaseStudyException {
+		User userResponse =userDetailsOp.updateUser(user, id);
+		return new ResponseEntity<>(userResponse, HttpStatus.OK);
+	}
+	
 }

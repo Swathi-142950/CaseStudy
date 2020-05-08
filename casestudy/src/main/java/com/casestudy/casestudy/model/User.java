@@ -3,6 +3,9 @@ package com.casestudy.casestudy.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Document(collection="User_Details")
 public class User {
 
@@ -14,18 +17,6 @@ public class User {
 	private String email;
 	private String phoneno;
 	private String fullname;
-	public String getPhoneno() {
-		return phoneno;
-	}
-	public void setPhoneno(String phoneno) {
-		this.phoneno = phoneno;
-	}
-	public String getFullname() {
-		return fullname;
-	}
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
 	public int getId() {
 		return id;
 	}
@@ -56,5 +47,18 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getPhoneno() {
+		return phoneno;
+	}
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}	
+	
 	
 }
