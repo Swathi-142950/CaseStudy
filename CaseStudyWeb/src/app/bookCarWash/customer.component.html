@@ -48,21 +48,26 @@
                         <div class="row">
                             <div class="col-sm-4">Schedule the date of wash:</div>
                             <div class="col-sm-4">
-                                <mat-form-field>
-                                    <input matInput [matDatepicker]="picker" placeholder="Choose a date"
-                                        formControlName="customer_service_date">
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                    <mat-error *ngIf="customerForm.get('customer_service_date').invalid">Please
-                                        enter the date of service</mat-error>
-                                </mat-form-field>
+                                <span *ngIf="!customerForm.get('customer_service_date').value || toggleEdit">
+                                    <mat-form-field>
+                                        <input matInput [matDatepicker]="picker" placeholder="Choose a date"
+                                            formControlName="customer_service_date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <mat-error *ngIf="customerForm.get('customer_service_date').invalid">Please
+                                            enter the date of service</mat-error>
+                                    </mat-form-field>
+                                </span>
+                                <span *ngIf="customerForm.get('customer_service_date').value && !toggleEdit">{{savedDate}}&nbsp;
+                                    <button class="btn btn-primary" (click)="toggleEdit = true; customerForm.controls['customer_service_date'].reset()">Edit</button>
+                                </span>
                             </div>
                         </div><br>
                         <div class="row">
                             <div class="col-sm-4">Schedule the time of wash:</div>
                             <div class="col-sm-4">
                                 <select formControlName="customer_service_time">
-                                    <option *ngFor="let timeSlot of serviceTimeOptions">{{timeSlot}}</option>
+                                    <option *ngFor="let timeSlot of serviceTimeOptions" [value]="timeSlot">{{timeSlot}}</option>
                                 </select>
                             </div>
                         </div>
@@ -77,7 +82,7 @@
     <div class="card" *ngIf="showFlag === 'EditProfile'">
         <div class="card-body">
             Current Details:<br>
-            <form (ngSubmit)="submitUserData()" [formGroup]="customerEditForm">
+            <form (ngSubmit)="updateUser()" [formGroup]="customerEditForm">
                 <div class="row">
                     <div class="col-sm-10">
                         <div class="row">

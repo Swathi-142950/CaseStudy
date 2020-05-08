@@ -17,7 +17,10 @@ export class CustomerComponent implements OnInit{
     serviceTimeOptions:Array<string>
     showFlag:string
     customerId:number
+    savedDate:string
+    toggleEdit:boolean
     constructor(private formBuilder: FormBuilder, private router:Router, private activatedRoute:ActivatedRoute, private carWashService:CarWashComponentService) {
+        this.toggleEdit = false
     }
     ngOnInit(): void {
         this.customerForm = new FormGroup({
@@ -44,21 +47,41 @@ export class CustomerComponent implements OnInit{
                 customer_service_date: ['', Validators.required],
                 customer_service_time: ['']
             })
-            
             this.customerEditForm = this.formBuilder.group({
                 fullname: [data['fullname']],
                 phoneno: [data['phoneno']],
                 email: [data['email']]
             })
         })
+        this.carWashService.fetchCustomerDetailsById(this.customerId).subscribe(data => {
+            if(data) {
+                this.customerForm = this.formBuilder.group({
+                    customer_name: [data['customer_name'], Validators.required],
+                    customer_phone: [data['customer_phone'], Validators.required],
+                    customer_address: [data['customer_address'], Validators.required],
+                    customer_vehicle_number: [data['customer_vehicle_number'], Validators.required],
+                    customer_service_date: [data['customer_service_date'], Validators.required],
+                    customer_service_time: [data['customer_service_time']]
+                })
+                let newDate = new Date(data['customer_service_date'])
+                this.savedDate = newDate.toDateString()
+            }
+        })
         this.serviceTimeOptions = constants.timeSlots
         this.showFlag = 'BookWash'
     }
 
     submitData () {
-        this.router.navigate(['/carwash'])
+        this.carWashService.saveCustomerDetails(this.customerForm.value, this.customerId).subscribe(() => {
+            this.toggleEdit = false
+            this.router.navigate(['/carwash'])
+        })
     }
 
-    editCustomerProfile () {
+    updateUser () {
+        this.carWashService.updateUserById(this.customerId, this.customerEditForm.value).subscribe(() => {
+            alert('Data updated successfully')
+        })
     }
+    
 }

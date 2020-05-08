@@ -10,7 +10,7 @@
         <div class="card-body" *ngIf="proceed">
             Logging in as: <strong>{{loginPerson | uppercase}}</strong><br>
             Username:&nbsp;<input type="email" [(ngModel)]="username"><br><br>
-            Password:&nbsp;<input type="text" [(ngModel)]="password"><br><br>
+            Password:&nbsp;<input type="password" [(ngModel)]="password"><br><br>
             <div style="margin-left: 50%;">
                 <button class="btn btn-primary" (click)="loginUser()" *ngIf="username && password">LOGIN</button>&nbsp;
                 <button class="btn btn-primary" (click)="proceed = false"> << Back</button>
