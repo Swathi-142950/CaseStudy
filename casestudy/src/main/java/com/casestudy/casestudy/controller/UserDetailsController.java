@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.casestudy.casestudy.dto.UserDto;
 import com.casestudy.casestudy.exception.CaseStudyException;
 import com.casestudy.casestudy.model.User;
 import com.casestudy.casestudy.operations.UserDetailsOperations;
@@ -28,16 +29,16 @@ public class UserDetailsController {
 	private UserDetailsOperations userDetailsOp;
 	
 	@GetMapping("/fetchUsers")
-	public ResponseEntity<List<User>> fetchUsers() throws CaseStudyException {
-		List<User> userList = userDetailsOp.fetchUsers();
+	public ResponseEntity<List<UserDto>> fetchUsers() throws CaseStudyException {
+		List<UserDto> userList = userDetailsOp.fetchUsers();
 		return new ResponseEntity<>(userList, HttpStatus.OK);
 	}
 	
 	@PostMapping("/saveUser")
-	public ResponseEntity<User> saveUsers(@RequestBody User user) throws CaseStudyException {
+	public ResponseEntity<UserDto> saveUsers(@RequestBody UserDto user) throws CaseStudyException {
 		Random random = new Random();
 		user.setId(random.nextInt(1000));
-		User userResponse = userDetailsOp.saveUsers(user);
+		UserDto userResponse = userDetailsOp.saveUsers(user);
 		if (null != userResponse) {
 			return new ResponseEntity<>(userResponse, HttpStatus.OK);
 		} else {
@@ -46,21 +47,21 @@ public class UserDetailsController {
 	}
 	
 	@GetMapping("/loginByRole/{role}")
-	public ResponseEntity<List<User>> fetchUsersByRole(@PathVariable String role) throws CaseStudyException {
-		List<User> userList = userDetailsOp.fetchUsersByRole(role);
+	public ResponseEntity<List<UserDto>> fetchUsersByRole(@PathVariable String role) throws CaseStudyException {
+		List<UserDto> userList = userDetailsOp.fetchUsersByRole(role);
 		return new ResponseEntity<>(userList, HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("/fetchUserById/{id}")
-	public ResponseEntity<User> fetchUserById(@PathVariable int id) throws CaseStudyException {
-		User user = userDetailsOp.fetchUserById(id);
+	public ResponseEntity<UserDto> fetchUserById(@PathVariable int id) throws CaseStudyException {
+		UserDto user = userDetailsOp.fetchUserById(id);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateUser/{id}")
-	public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable int id) throws CaseStudyException {
-		User userResponse =userDetailsOp.updateUser(user, id);
+	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user, @PathVariable int id) throws CaseStudyException {
+		UserDto userResponse =userDetailsOp.updateUser(user, id);
 		return new ResponseEntity<>(userResponse, HttpStatus.OK);
 	}
 	

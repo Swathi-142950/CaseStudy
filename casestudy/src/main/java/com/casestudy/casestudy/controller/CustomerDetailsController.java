@@ -1,11 +1,8 @@
 package com.casestudy.casestudy.controller;
 
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.casestudy.casestudy.dto.CustomerDto;
 import com.casestudy.casestudy.exception.CaseStudyException;
 import com.casestudy.casestudy.model.Customer;
 import com.casestudy.casestudy.operations.CustomerDetailsOperations;
@@ -27,15 +25,15 @@ public class CustomerDetailsController {
 	private CustomerDetailsOperations customerDetailsOp; 
 	
 	@PostMapping("/saveCustomerDetails/{id}")
-	public ResponseEntity<Customer> saveCustomerDetails(@RequestBody Customer customer, @PathVariable int id) throws CaseStudyException {
+	public ResponseEntity<CustomerDto> saveCustomerDetails(@RequestBody CustomerDto customer, @PathVariable int id) throws CaseStudyException {
 		customer.setId(id);
-		Customer customerResponse = customerDetailsOp.saveCustomerData(customer);
+		CustomerDto customerResponse = customerDetailsOp.saveCustomerData(customer);
 		return new ResponseEntity<>(customerResponse, HttpStatus.OK);
 	}
 	
 	@GetMapping("/getCustomerDetails/{id}")
-	public ResponseEntity<Customer> getCustomerDetails(@PathVariable int id) {
-		Customer customer = customerDetailsOp.getCustomerData(id);
+	public ResponseEntity<CustomerDto> getCustomerDetails(@PathVariable int id) {
+		CustomerDto customer = customerDetailsOp.getCustomerData(id);
 		return new ResponseEntity<>(customer, HttpStatus.OK);
 	}
 

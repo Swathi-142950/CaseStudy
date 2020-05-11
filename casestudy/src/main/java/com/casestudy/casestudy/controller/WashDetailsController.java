@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.casestudy.casestudy.dto.WashPackageDto;
 import com.casestudy.casestudy.exception.CaseStudyException;
-import com.casestudy.casestudy.model.WashPackage;
 import com.casestudy.casestudy.operations.WashDetailsOperations;
 
 @RestController
@@ -23,8 +23,8 @@ public class WashDetailsController {
 	WashDetailsOperations washDetailsOp;
 
 	@RequestMapping(value="/fetchWashPackages", method=RequestMethod.GET)
-	public ResponseEntity<List<WashPackage>> fetchCarDetails() throws CaseStudyException {
-		List<WashPackage> carList = washDetailsOp.fetchWashDetails();
-		return new ResponseEntity<>(carList, HttpStatus.OK);
+	public ResponseEntity<List<WashPackageDto>> fetchCarDetails() throws CaseStudyException {
+		List<WashPackageDto> washList = washDetailsOp.fetchWashDetails();
+		return new ResponseEntity<>(washList, HttpStatus.OK);
 	}
 }

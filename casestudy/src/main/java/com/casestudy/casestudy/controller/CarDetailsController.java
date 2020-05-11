@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.casestudy.casestudy.dto.CarsDto;
 import com.casestudy.casestudy.exception.CaseStudyException;
 import com.casestudy.casestudy.model.Cars;
 import com.casestudy.casestudy.operations.CarDetailsOperations;
@@ -23,8 +24,8 @@ public class CarDetailsController {
 	CarDetailsOperations carDetailsOp;
 
 	@RequestMapping(value="/fetchCars", method=RequestMethod.GET)
-	public ResponseEntity<List<Cars>> fetchCarDetails() throws CaseStudyException {
-		List<Cars> carList = carDetailsOp.fetchCarDetails();
+	public ResponseEntity<List<CarsDto>> fetchCarDetails() throws CaseStudyException {
+		List<CarsDto> carList = carDetailsOp.fetchCarDetails();
 		return new ResponseEntity<>(carList, HttpStatus.OK);
 	}
 }
