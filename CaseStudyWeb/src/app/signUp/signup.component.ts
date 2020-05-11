@@ -17,6 +17,12 @@ export class SignupComponent {
     constructor(private router:Router, private signUpService:SignUpService) {
     }
 
+    checkValidation(value, str:string) {
+        let flag:boolean
+        if (str === 'fullname') flag = /[A-Za-z]{3}[A-Za-z ]+/.test(value)
+        return flag
+    }
+
     signUp():void {
         if (this.email && this.password && this.username) {
             let obj = {

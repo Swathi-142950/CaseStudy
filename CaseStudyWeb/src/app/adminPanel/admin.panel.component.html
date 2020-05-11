@@ -1,1 +1,15 @@
-hello
+<div class="card">
+    <h5 class="card-header">Admin Settings</h5>
+    <div class="card-body">
+        <button class="btn btn-link" [routerLink]="['addon']">Add-On Management</button><br><br>
+        <button class="btn btn-link" [routerLink]="['cars']">Car Management</button><br><br>
+        <button class="btn btn-link" [routerLink]="['service']">Service Management</button><br><br>
+        <div class="card">
+          <h5 class="card-header"></h5>
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

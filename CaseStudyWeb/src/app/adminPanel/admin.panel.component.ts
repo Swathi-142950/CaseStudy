@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector:'admin-panel-component',
     templateUrl: 'admin.panel.component.html'
 })
-export class AdminPanelComponent{}
+export class AdminPanelComponent{
+    constructor(private router:Router) {}
+
+}
