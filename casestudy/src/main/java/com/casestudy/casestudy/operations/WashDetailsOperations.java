@@ -18,9 +18,9 @@ public class WashDetailsOperations {
 	WashDetailsRepo washDetailsRepo;
 	
 	public List<WashPackageDto> fetchWashDetails() throws CaseStudyException {
-		List<WashPackage> users = washDetailsRepo.findAll();
+		List<WashPackage> wash = washDetailsRepo.findAll();
 		List<WashPackageDto> washDtoList = new ArrayList<>();
-		users.stream().forEach(washFetch -> {
+		wash.stream().forEach(washFetch -> {
 			WashPackageDto washDto = new WashPackageDto();
 			washDto.setId(washFetch.getId());
 			washDto.setPackageValue(washFetch.getPackageValue());
@@ -28,5 +28,21 @@ public class WashDetailsOperations {
 			washDtoList.add(washDto);
 		});
 		return washDtoList;
+	}
+	
+	public List<WashPackageDto> saveWashPackages(List<WashPackageDto> washPackages) throws CaseStudyException {
+		List<WashPackage> washPackageList = new ArrayList<>();
+		for(WashPackageDto washPackage : washPackages) {
+			WashPackage washPackageFetch = washDetailsRepo.findByPackageValue(washPackage.getPackageValue());
+			if(null == washPackageFetch) 
+				washPackageFetch = new WashPackage();
+
+			washPackageFetch.setPackageValue(washPackage.getPackageValue());
+			washPackageFetch.setId(washPackage.getId());
+			washPackageFetch.setPrice(washPackage.getPrice());
+			washPackageList.add(washPackageFetch);
+			washDetailsRepo.save(washPackageList);
+		}
+		return washPackages;
 	}
 }
