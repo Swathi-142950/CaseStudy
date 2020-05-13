@@ -8,4 +8,5 @@ import com.casestudy.casestudy.model.Cars;
 
 @Repository
 public interface CarDetailsRepo extends MongoRepository<Cars, Integer>{
+	Cars findById(int id);
 }

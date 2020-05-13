@@ -8,4 +8,5 @@ import com.casestudy.casestudy.model.WashPackage;
 @Repository
 public interface WashDetailsRepo extends MongoRepository<WashPackage, Integer>{
 	WashPackage findByPackageValue(String packageValue);
+	WashPackage findById(int id);
 }

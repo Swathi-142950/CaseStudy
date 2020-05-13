@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.casestudy.casestudy.dto.WashPackageDto;
 import com.casestudy.casestudy.exception.CaseStudyException;
-import com.casestudy.casestudy.model.WashPackage;
 import com.casestudy.casestudy.operations.WashDetailsOperations;
 
 @RestController

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.casestudy.casestudy.dto.CustomerDto;
 import com.casestudy.casestudy.exception.CaseStudyException;
-import com.casestudy.casestudy.model.Customer;
 import com.casestudy.casestudy.operations.CustomerDetailsOperations;
 
 @RestController

@@ -2,6 +2,7 @@ package com.casestudy.casestudy.operations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,16 +34,19 @@ public class WashDetailsOperations {
 	public List<WashPackageDto> saveWashPackages(List<WashPackageDto> washPackages) throws CaseStudyException {
 		List<WashPackage> washPackageList = new ArrayList<>();
 		for(WashPackageDto washPackage : washPackages) {
-			WashPackage washPackageFetch = washDetailsRepo.findByPackageValue(washPackage.getPackageValue());
-			if(null == washPackageFetch) 
+			WashPackage washPackageFetch = washDetailsRepo.findById((washPackage.getId()));
+			if(null == washPackageFetch) {
 				washPackageFetch = new WashPackage();
-
+				Random random = new Random();
+				washPackageFetch.setId(random.nextInt(1000));
+			} else {
+				washPackageFetch.setId(washPackage.getId());
+			}
 			washPackageFetch.setPackageValue(washPackage.getPackageValue());
-			washPackageFetch.setId(washPackage.getId());
 			washPackageFetch.setPrice(washPackage.getPrice());
 			washPackageList.add(washPackageFetch);
 			washDetailsRepo.save(washPackageList);
 		}
-		return washPackages;
+		return fetchWashDetails();
 	}
 }

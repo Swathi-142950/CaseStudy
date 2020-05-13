@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.casestudy.casestudy.dto.UserDto;
 import com.casestudy.casestudy.exception.CaseStudyException;
-import com.casestudy.casestudy.model.User;
 import com.casestudy.casestudy.operations.UserDetailsOperations;
 
 @RestController
