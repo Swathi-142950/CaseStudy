@@ -1,1 +1,24 @@
-Add on
+<div class="card">
+    <h5 class="card-header">Add-On Management</h5>
+    <div class="card-body">
+        <button class="btn btn-link" (click)="selectedAction = 'AddAddOn'">Add Add On</button><br>
+        <button class="btn btn-link" (click)="selectedAction = 'EditAddOn'">Edit Add On</button>
+        <div *ngIf="selectedAction === 'AddAddOn'">
+          <div class="row"><div class="col-sm-5">Enter the Add On: </div><div class="col-sm-5"><input type="text" [(ngModel)]="addOnName"></div></div><br>
+          <div class="row"><div class="col-sm-5">Enter the price: </div><div class="col-sm-5"> <input type="text" [(ngModel)]="addOnCost"></div></div><br>
+        </div>
+        <table class="table table-striped" *ngIf="addOns.length > 0">
+          <tr>
+            <th>Add On Name</th>
+            <th>Price</th>
+          </tr>
+          <tr *ngFor="let addOn of addOns">
+            <td *ngIf="selectedAction === 'EditAddOn'"><input type="text" [(ngModel)]="addOn.addOnName"></td>
+            <td *ngIf="selectedAction !== 'EditAddOn'">{{addOn.addOnName}}</td>
+            <td *ngIf="selectedAction === 'EditAddOn'"><input type="text" [(ngModel)]="addOn.addOnCost"></td>
+            <td *ngIf="selectedAction !== 'EditAddOn'">{{addOn.addOnCost}}</td>
+          </tr>
+        </table><br>
+        <button class="btn btn-primary" (click)="saveAddOnDetails(); selectedAction = null">Save Changes</button>
+    </div>
+  </div>

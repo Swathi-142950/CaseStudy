@@ -6,6 +6,5 @@ import { Router } from '@angular/router';
     templateUrl: 'admin.panel.component.html'
 })
 export class AdminPanelComponent{
-    constructor(private router:Router) {}
-
+    constructor() {}
 }
