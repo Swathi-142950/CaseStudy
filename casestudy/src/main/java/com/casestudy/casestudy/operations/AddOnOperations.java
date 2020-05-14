@@ -34,18 +34,22 @@ public class AddOnOperations {
 	public List<AddOnsDto> saveAddOns(List<AddOnsDto> addOnsListDto) throws CaseStudyException {
 		List<AddOns> addOnsList = new ArrayList<>();
 		for (AddOnsDto addOnsPackage : addOnsListDto) {
-			AddOns addOnsFetch = addOnsRepo.findById((addOnsPackage.getId()));
-			if (null == addOnsFetch) {
-				addOnsFetch = new AddOns();
-				Random random = new Random();
-				addOnsFetch.setId(random.nextInt(1000));
+			if (!addOnsPackage.isDeleteFlag()) {
+				AddOns addOnsFetch = addOnsRepo.findById((addOnsPackage.getId()));
+				if (null == addOnsFetch) {
+					addOnsFetch = new AddOns();
+					Random random = new Random();
+					addOnsFetch.setId(random.nextInt(1000));
+				} else {
+					addOnsFetch.setId(addOnsPackage.getId());
+				}
+				addOnsFetch.setAddOnCost(addOnsPackage.getAddOnCost());
+				addOnsFetch.setAddOnName(addOnsPackage.getAddOnName());
+				addOnsList.add(addOnsFetch);
+				addOnsRepo.save(addOnsList);
 			} else {
-				addOnsFetch.setId(addOnsPackage.getId());
+				addOnsRepo.delete(addOnsPackage.getId());;
 			}
-			addOnsFetch.setAddOnCost(addOnsPackage.getAddOnCost());
-			addOnsFetch.setAddOnName(addOnsPackage.getAddOnName());
-			addOnsList.add(addOnsFetch);
-			addOnsRepo.save(addOnsList);
 		}
 		return fetchAddOns();
 	}

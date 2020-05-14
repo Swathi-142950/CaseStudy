@@ -9,6 +9,7 @@ public class AddOnsDto {
 	private int id;
 	private String addOnName;
 	private double addOnCost;
+	private boolean deleteFlag;
 	public int getId() {
 		return id;
 	}
@@ -27,6 +28,11 @@ public class AddOnsDto {
 	public void setAddOnCost(double addOnCost) {
 		this.addOnCost = addOnCost;
 	}
-	
+	public boolean isDeleteFlag() {
+		return deleteFlag;
+	}
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
 	
 }
