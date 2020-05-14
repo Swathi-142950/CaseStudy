@@ -27,7 +27,7 @@ export class LoginComponent {
                 let found = _.find(data, {'username': this.username, 'password': this.password})
                 if (found && this.loginPerson !== 'admin') {
                     this.router.navigate([`${this.loginPerson}/${found['id']}`])
-                } else if (this.loginPerson === 'admin') {
+                } else if (found && this.loginPerson === 'admin') {
                     this.router.navigate([`${this.loginPerson}`])
                 } else {
                     alert('Please check your credentials again')

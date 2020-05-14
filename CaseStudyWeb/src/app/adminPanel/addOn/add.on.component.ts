@@ -11,7 +11,9 @@ export class AddOnComponent implements OnInit {
     addOns: Array<Object>
     editableCheck: boolean
     selectedAction: string
+    deletedValues:Array<Object>
     constructor(private adminService: AdminPanelService) {
+        this.deletedValues = []
     }
 
     ngOnInit(): void {
@@ -24,18 +26,28 @@ export class AddOnComponent implements OnInit {
         this.addOns = arr
     }
 
-    saveAddOnDetails(): void {
-        if (this.selectedAction === 'AddAddOn') {
-            let obj = {
-                'addOnName': this.addOnName,
-                'addOnCost': this.addOnCost
-            }
-            this.addOns.push(obj)
+    addRow() {
+        let obj = {
+            'addOnName': this.addOnName,
+            'addOnCost': this.addOnCost
         }
+        this.addOns.push(obj)
+        this.addOnCost = null
+        this.addOnName = ''
+    }
+
+    deleteRow(index:number) {
+        let splicedVal = this.addOns.splice(index, 1)
+        this.deletedValues.push(...splicedVal)
+    }
+
+    saveAddOnDetails(): void {
+        _.forEach(this.deletedValues, value => {
+            value['deleteFlag'] = true
+            this.addOns.push(value)
+        })
         this.adminService.saveAddOns(this.addOns).subscribe(data => {
             this.addOns = Object(data)
-            this.addOnCost = null
-            this.addOnName = ''
         })
     }
 }
