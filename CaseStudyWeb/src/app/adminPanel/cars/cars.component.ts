@@ -15,9 +15,11 @@ export class CarsComponent implements OnInit{
     cars:Array<Object>
     editableCheck:boolean
     selectedAction:string
+    deletedValues:Array<Object>
     constructor(private adminService: AdminPanelService) {
         this.categories = constants.carCategories
         this.category = 'SUV'
+        this.deletedValues = []
     }
     ngOnInit(): void {
         let arr = []
@@ -28,20 +30,31 @@ export class CarsComponent implements OnInit{
         })
         this.cars = arr
     }
-    saveCarDetails():void {
-        if (this.selectedAction === 'AddCars') {
-            let obj = {
-                'category': this.category,
-                'brand': this.brand,
-                'name': this.name
-            }
-            this.cars.push(obj)
+
+    addRow() {
+        let obj = {
+            'category': this.category,
+            'brand': this.brand,
+            'name': this.name
         }
+        this.cars.push(obj)
+        this.category = ''
+        this.brand = ''
+        this.name = ''
+    }
+
+    deleteRow(index:number) {
+        let splicedVal = this.cars.splice(index, 1)
+        this.deletedValues.push(...splicedVal)
+    }
+
+    saveCarDetails():void {
+        _.forEach(this.deletedValues, value => {
+            value['deleteFlag'] = true
+            this.cars.push(value)
+        })
         this.adminService.saveCars(this.cars).subscribe(data => {
             this.cars = Object(data)
-            this.category = ''
-            this.brand = ''
-            this.name = ''
         })
     }
 }

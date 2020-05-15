@@ -2,22 +2,22 @@
   <h5 class="card-header">Service Management</h5>
   <div class="card-body">
       <button class="btn btn-link" (click)="selectedAction = 'AddService'">Add Service</button><br>
-      <button class="btn btn-link" (click)="selectedAction = 'EditService'">Edit Service</button>
+      <button class="btn btn-link" (click)="selectedAction = 'EditService'">Edit/Delete Service</button>
       <div *ngIf="selectedAction === 'AddService'">
         <div class="row"><div class="col-sm-5">Enter the package name: </div><div class="col-sm-5"><input type="text" [(ngModel)]="packageValue"></div></div><br>
-        <div class="row"><div class="col-sm-5">Enter the price: </div><div class="col-sm-5"> <input type="text" [(ngModel)]="price"></div></div><br>
+        <div class="row"><div class="col-sm-5">Enter the price: </div><div class="col-sm-5"> <input type="text" [(ngModel)]="price"></div>&nbsp;<button class="btn btn-primary" (click)="addRow()" *ngIf="addOnName && addOnCost">Add</button></div><br>
       </div>
       <table class="table table-striped" *ngIf="services.length > 0">
         <tr>
           <th>Package Name</th>
           <th>Price</th>
         </tr>
-        <tr *ngFor="let service of services">
+        <tr *ngFor="let service of services; index as i">
           <td *ngIf="selectedAction === 'EditService'"><input type="text" [(ngModel)]="service.packageValue"></td>
           <td *ngIf="selectedAction !== 'EditService'">{{service.packageValue}}</td>
           <td *ngIf="selectedAction === 'EditService'"><input type="text" [(ngModel)]="service.price"></td>
           <td *ngIf="selectedAction !== 'EditService'">{{service.price}}</td>
-        </tr>
+          <td *ngIf="selectedAction === 'EditService'"><button class="btn btn-danger" (click)="deleteRow(i)">Delete</button></td></tr>
       </table><br>
       <button class="btn btn-primary" (click)="saveServiceDetails(); selectedAction = null">Save Changes</button>
   </div>

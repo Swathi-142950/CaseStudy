@@ -13,7 +13,9 @@ export class ServiceComponent implements OnInit {
     services: Array<Object>
     editableCheck: boolean
     selectedAction: string
+    deletedValues:Array<Object>
     constructor(private adminService: AdminPanelService) {
+        this.deletedValues = []
     }
 
     ngOnInit(): void {
@@ -26,18 +28,28 @@ export class ServiceComponent implements OnInit {
         this.services = arr
     }
 
-    saveServiceDetails(): void {
-        if (this.selectedAction === 'AddService') {
-            let obj = {
-                'packageValue': this.packageValue,
-                'price': this.price
-            }
-            this.services.push(obj)
+    addRow() {
+        let obj = {
+            'packageValue': this.packageValue,
+            'price': this.price
         }
+        this.services.push(obj)
+        this.packageValue = ''
+        this.price = ''
+    }
+
+    deleteRow(index:number) {
+        let splicedVal = this.services.splice(index, 1)
+        this.deletedValues.push(...splicedVal)
+    }
+
+    saveServiceDetails(): void {
+        _.forEach(this.deletedValues, value => {
+            value['deleteFlag'] = true
+            this.services.push(value)
+        })
         this.adminService.saveServices(this.services).subscribe(data => {
             this.services = Object(data)
-            this.packageValue = ''
-            this.price = ''
         })
     }
 }
