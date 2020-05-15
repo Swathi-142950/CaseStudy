@@ -34,18 +34,22 @@ public class WashDetailsOperations {
 	public List<WashPackageDto> saveWashPackages(List<WashPackageDto> washPackages) throws CaseStudyException {
 		List<WashPackage> washPackageList = new ArrayList<>();
 		for(WashPackageDto washPackage : washPackages) {
-			WashPackage washPackageFetch = washDetailsRepo.findById((washPackage.getId()));
-			if(null == washPackageFetch) {
-				washPackageFetch = new WashPackage();
-				Random random = new Random();
-				washPackageFetch.setId(random.nextInt(1000));
+			if (!washPackage.isDeleteFlag()) {
+				WashPackage washPackageFetch = washDetailsRepo.findById((washPackage.getId()));
+				if(null == washPackageFetch) {
+					washPackageFetch = new WashPackage();
+					Random random = new Random();
+					washPackageFetch.setId(random.nextInt(1000));
+				} else {
+					washPackageFetch.setId(washPackage.getId());
+				}
+				washPackageFetch.setPackageValue(washPackage.getPackageValue());
+				washPackageFetch.setPrice(washPackage.getPrice());
+				washPackageList.add(washPackageFetch);
+				washDetailsRepo.save(washPackageList);
 			} else {
-				washPackageFetch.setId(washPackage.getId());
+				washDetailsRepo.delete(washPackage.getId());
 			}
-			washPackageFetch.setPackageValue(washPackage.getPackageValue());
-			washPackageFetch.setPrice(washPackage.getPrice());
-			washPackageList.add(washPackageFetch);
-			washDetailsRepo.save(washPackageList);
 		}
 		return fetchWashDetails();
 	}

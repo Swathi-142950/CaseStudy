@@ -8,6 +8,7 @@ public class CarsDto {
 	private String name;
 	private String category;
 	private String brand;
+	private boolean deleteFlag;
 	public int getId() {
 		return id;
 	}
@@ -32,7 +33,11 @@ public class CarsDto {
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-	
-	
+	public boolean isDeleteFlag() {
+		return deleteFlag;
+	}
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
 
 }

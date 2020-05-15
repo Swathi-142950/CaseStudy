@@ -48,7 +48,7 @@ public class AddOnOperations {
 				addOnsList.add(addOnsFetch);
 				addOnsRepo.save(addOnsList);
 			} else {
-				addOnsRepo.delete(addOnsPackage.getId());;
+				addOnsRepo.delete(addOnsPackage.getId());
 			}
 		}
 		return fetchAddOns();

@@ -8,6 +8,7 @@ public class WashPackageDto {
 	private int id;
 	private String packageValue;
 	private int price;
+	private boolean deleteFlag;
 	public int getId() {
 		return id;
 	}
@@ -26,6 +27,11 @@ public class WashPackageDto {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+	public boolean isDeleteFlag() {
+		return deleteFlag;
+	}
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
 	
 }
