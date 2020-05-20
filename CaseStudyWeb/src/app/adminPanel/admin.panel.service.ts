@@ -32,4 +32,13 @@ export class AdminPanelService {
         let url = constants.baseUrl + `/addons/saveAddOns`
         return this.httpClient.post(url, obj)
     }
+
+    getPromos () {
+        return this.httpClient.get(constants.baseUrl + `/promo/fetchPromo`)
+    }
+
+    savePromos(obj:Object) {
+        let url = constants.baseUrl +  `/promo/savePromo`
+        return this.httpClient.post(url, obj)
+    }
 }

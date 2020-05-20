@@ -32,6 +32,7 @@ export class LoginComponent {
                 } else {
                     alert('Please check your credentials again')
                 }
+                localStorage.setItem('currentUser', JSON.stringify(found));
             })
         }
     }

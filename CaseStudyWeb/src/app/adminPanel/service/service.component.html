@@ -5,7 +5,7 @@
       <button class="btn btn-link" (click)="selectedAction = 'EditService'">Edit/Delete Service</button>
       <div *ngIf="selectedAction === 'AddService'">
         <div class="row"><div class="col-sm-5">Enter the package name: </div><div class="col-sm-5"><input type="text" [(ngModel)]="packageValue"></div></div><br>
-        <div class="row"><div class="col-sm-5">Enter the price: </div><div class="col-sm-5"> <input type="text" [(ngModel)]="price"></div>&nbsp;<button class="btn btn-primary" (click)="addRow()" *ngIf="addOnName && addOnCost">Add</button></div><br>
+        <div class="row"><div class="col-sm-5">Enter the price: </div><div class="col-sm-5"> <input type="text" [(ngModel)]="price"></div>&nbsp;<button class="btn btn-primary" (click)="addRow()" *ngIf="packageValue && price">Add</button></div><br>
       </div>
       <table class="table table-striped" *ngIf="services.length > 0">
         <tr>

@@ -16,6 +16,7 @@ import { MatDatepickerModule, MatInputModule, MatNativeDateModule } from '@angul
 import { AdminPanelComponent } from './adminPanel/admin.panel.component';
 import { AppRouteModule } from './app.route.module';
 import { AdminPanelModule } from './adminPanel/admin.panel.module';
+import { AuthGuard } from './security/auth.guard';
 
 @NgModule({
     imports: [BrowserModule, FormsModule, MatDatepickerModule, MatInputModule, AdminPanelModule, MatNativeDateModule, ReactiveFormsModule, AppRouteModule, RouterModule.forChild([
@@ -30,6 +31,7 @@ import { AdminPanelModule } from './adminPanel/admin.panel.module';
         CustomerComponent, 
         LoginComponent,
         SignupComponent],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers:[AuthGuard]
 })
 export class AppModule { }

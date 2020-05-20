@@ -6,7 +6,8 @@
     <div class="card-body">
       <a [routerLink]="['/home']">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
       <a [routerLink]="[{ outlets: {secondary: ['aboutUs']}}]">About Us</a>
-      <a style="margin-left: 75%;" [routerLink]="['/login']">Login</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+      <span *ngIf="!localStorageValue"><a style="margin-left: 75%;" [routerLink]="['/login']">Login</a>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <span *ngIf="localStorageValue"><a style="margin-left: 75%;" (click)="clearLocalStorage()" [routerLink]="['/home']">Logout</a>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
       <a [routerLink]="['/signup']">Sign Up</a>
       <div class="row" style="margin-top: 5%;">
         <div class="col-sm-9">

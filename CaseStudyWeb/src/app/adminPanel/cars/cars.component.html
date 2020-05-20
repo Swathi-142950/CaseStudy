@@ -8,7 +8,7 @@
           <div class="row"><div class="col-sm-5">Select the category: </div><div class="col-sm-5"><select [(ngModel)]="category">
               <option *ngFor="let category of categories">{{ category }}</option>
           </select></div></div><br>
-          <div class="row"><div class="col-sm-5">Enter the brand: </div><div class="col-sm-5"> <input type="text" [(ngModel)]="brand"></div>&nbsp;<button class="btn btn-primary" (click)="addRow()" *ngIf="addOnName && addOnCost">Add</button></div><br>
+          <div class="row"><div class="col-sm-5">Enter the brand: </div><div class="col-sm-5"> <input type="text" [(ngModel)]="brand"></div>&nbsp;<button class="btn btn-primary" (click)="addRow()" *ngIf="category && brand && name">Add</button></div><br>
         </div>
         <table class="table table-striped" *ngIf="cars.length > 0">
           <tr>
