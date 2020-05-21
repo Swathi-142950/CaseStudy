@@ -34,7 +34,9 @@ export class SignupComponent {
                 'role': 'customer'
             }
             this.signUpService.saveUsers(obj).subscribe(data => {
-                this.router.navigate(['/login'])
+                let url = `customer/${data['id']}`
+                this.router.navigate([url])
+                console.log(data)
             })
         } else {
             alert('Please enter all the required details')
