@@ -75,6 +75,9 @@
                 </div>
                 <button class="btn btn-primary" type="submit" [disabled]="customerForm.invalid">
                     Submit
+                </button>&nbsp;&nbsp;
+                <button class="btn btn-primary" (click)="goToWashComponent()" [disabled]="customerForm.valid">
+                    Next
                 </button>
             </form>
         </div>

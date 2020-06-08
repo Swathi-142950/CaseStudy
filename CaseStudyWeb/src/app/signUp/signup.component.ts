@@ -13,8 +13,13 @@ export class SignupComponent {
     username:string
     fullname:string
     phoneno:string
+    role:string
+    signupOptions:Array<string>
+    signupPerson:string
 
     constructor(private router:Router, private signUpService:SignUpService) {
+        this.role = 'userSignUp'
+        this.signupOptions = ['customer','washer']
     }
 
     checkValidation(value, str:string) {
@@ -31,12 +36,12 @@ export class SignupComponent {
                 'username': this.username,
                 'fullname': this.fullname,
                 'phoneno': this.phoneno,
-                'role': 'customer'
+                'role': this.signupPerson,
+                'status': 'valid'
             }
             this.signUpService.saveUsers(obj).subscribe(data => {
-                let url = `customer/${data['id']}`
+                let url = `${this.signupPerson}/${data['id']}`
                 this.router.navigate([url])
-                console.log(data)
             })
         } else {
             alert('Please enter all the required details')

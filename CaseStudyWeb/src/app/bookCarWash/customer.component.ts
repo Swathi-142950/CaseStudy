@@ -83,5 +83,9 @@ export class CustomerComponent implements OnInit{
             alert('Data updated successfully')
         })
     }
+
+    goToWashComponent () {
+        this.router.navigate(['/carwash'])
+    }
     
 }

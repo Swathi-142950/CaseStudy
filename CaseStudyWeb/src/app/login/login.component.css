@@ -1,34 +1,4 @@
-<div class="container">
-    <div class="card">
-        <h5 class="card-header">WELCOME!</h5>
-        <div class="card-body" *ngIf="!proceed">
-            LOGIN AS:
-            <div *ngFor="let login of loginOptions">
-                <input type="radio" name="login" [value]="login" [(ngModel)]="loginPerson"> {{login}}<br>
-            </div>
-            <button class="btn btn-primary" (click)="proceed = !proceed">Proceed</button>
-        </div>
-        <div class="card-body" *ngIf="proceed">
-            Logging in as: <strong>{{loginPerson | uppercase}}</strong><br>
-            Username:&nbsp;<input type="email" [(ngModel)]="username"><br><br>
-            Password:&nbsp;<input type="password" [(ngModel)]="password"><br><br>
-            <div style="margin-left: 50%;">
-                <button class="btn btn-primary" (click)="loginUser()" *ngIf="username && password">LOGIN</button>&nbsp;
-                <button class="btn btn-primary" (click)="proceed = false">
-                    << Back</button>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <button class="loginBtn loginBtn--facebook" (click)="socialSignIn('facebook')">
-                Login with Facebook
-            </button>
-        </div>
-    </div>
-</div>
-<style>
-    .loginBtn {
+.loginBtn {
     box-sizing: border-box;
     position: relative;
     /* width: 13em;  - apply for fixed size */
@@ -90,4 +60,3 @@
   .loginBtn--google:focus {
     background: #E74B37;
   }
-</style>

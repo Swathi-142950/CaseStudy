@@ -41,4 +41,18 @@ export class AdminPanelService {
         let url = constants.baseUrl +  `/promo/savePromo`
         return this.httpClient.post(url, obj)
     }
+
+    fetchUsers() {
+        return this.httpClient.get(constants.baseUrl + '/users/fetchUsers')
+    }
+
+    saveUserList(userList) {
+        let url = constants.baseUrl + '/users/updateUserList/users'
+        return this.httpClient.post(url, userList)
+    }
+    
+    saveWasherList(washers) {
+        let url = constants.baseUrl + '/users/updateUserList/washers'
+        return this.httpClient.post(url, washers);
+    }
 }

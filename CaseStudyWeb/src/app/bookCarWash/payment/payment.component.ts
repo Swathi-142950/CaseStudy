@@ -11,6 +11,7 @@ export class PaymentComponent {
     constructor(){
         this.payments = ['COD', 'Credit Card', 'Debit Card', 'Net Banking', 'UPI']
         this.generateReceipt = false
+        this.selectedPaymentMode = 'COD'
     }
     proceedToPayment():void {
         if (this.selectedPaymentMode === 'COD') {
