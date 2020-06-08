@@ -12,6 +12,8 @@ public class UserDto {
 	private String email;
 	private String phoneno;
 	private String fullname;
+	private String status;
+
 	public int getId() {
 		return id;
 	}
@@ -53,6 +55,12 @@ public class UserDto {
 	}
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

@@ -28,6 +28,7 @@ public class UserDetailsOperations {
 			userDto.setPhoneno(usersFetch.getPhoneno());
 			userDto.setRole(usersFetch.getRole());
 			userDto.setUsername(usersFetch.getUsername());
+			userDto.setStatus(usersFetch.getStatus());
 			userDtoList.add(userDto);
 		});
 		return userDtoList;
@@ -42,8 +43,24 @@ public class UserDetailsOperations {
 		user.setPhoneno(userdto.getPhoneno());
 		user.setRole(userdto.getRole());
 		user.setUsername(userdto.getUsername());
+		user.setStatus(userdto.getStatus());
 		userDetailsRepo.save(user);
 		return userdto;
+	}
+	
+	public List<UserDto> saveUserListUpdate(List<UserDto> userdtos, String role) {
+		List<User> userList = new ArrayList<>();
+		for(UserDto userPackage : userdtos) {
+			User userFetch = userDetailsRepo.findById((userPackage.getId()));
+			userFetch.setEmail(userPackage.getEmail());
+			userFetch.setFullname(userPackage.getFullname());
+			userFetch.setPhoneno(userPackage.getPhoneno());
+			userFetch.setStatus(userPackage.getStatus());
+			userList.add(userFetch);
+			userDetailsRepo.save(userList);
+		}
+		if (role == "customer") return fetchUsersByRole("customer");
+		else return fetchUsersByRole("washer");
 	}
 	
 	public List<UserDto> fetchUsersByRole(String role) {
@@ -58,6 +75,7 @@ public class UserDetailsOperations {
 			userDto.setPhoneno(usersFetch.getPhoneno());
 			userDto.setRole(usersFetch.getRole());
 			userDto.setUsername(usersFetch.getUsername());
+			userDto.setStatus(usersFetch.getStatus());
 			userDtoList.add(userDto);
 		});
 		return userDtoList;

@@ -1,6 +1,8 @@
 package com.casestudy.casestudy.dto;
 
+import org.bson.types.Binary;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class CarsDto {
@@ -39,5 +41,5 @@ public class CarsDto {
 	public void setDeleteFlag(boolean deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-
+	
 }

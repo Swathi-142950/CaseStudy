@@ -1,5 +1,6 @@
 package com.casestudy.casestudy.operations;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -32,7 +33,7 @@ public class CarDetailsOperations {
 		return carsDtoList;
 	}
 
-	public List<CarsDto> saveCars(List<CarsDto> carsListDto) throws CaseStudyException {
+	public List<CarsDto> saveCars(List<CarsDto> carsListDto) throws CaseStudyException, IOException {
 		List<Cars> carList = new ArrayList<>();
 		for(CarsDto carPackage : carsListDto) {
 			if (!carPackage.isDeleteFlag()) {
