@@ -11,7 +11,7 @@ public class Washer {
 	private String emailId;
 	private float ratings;
 	private String name;
-	private long phoneNumber;
+	private String phoneNumber;
 	private String status;
 	public int getId() {
 		return id;
@@ -37,11 +37,11 @@ public class Washer {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(long phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhoneNumber(String string) {
+		this.phoneNumber = string;
 	}
 	public String getStatus() {
 		return status;

@@ -10,6 +10,8 @@ public class BookingDetails {
 	private Customer customerDetails;
 	private Cars carDetails;
 	private String payment;
+	private String packageDetails;
+	private Washer washerDetails;
 	public int getId() {
 		return id;
 	}
@@ -33,6 +35,18 @@ public class BookingDetails {
 	}
 	public void setPayment(String payment) {
 		this.payment = payment;
+	}
+	public String getPackageDetails() {
+		return packageDetails;
+	}
+	public void setPackageDetails(String packageDetails) {
+		this.packageDetails = packageDetails;
+	}
+	public Washer getWasherDetails() {
+		return washerDetails;
+	}
+	public void setWasherDetails(Washer washerDetails) {
+		this.washerDetails = washerDetails;
 	}
 	
 }

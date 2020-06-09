@@ -29,6 +29,7 @@ public class BookingDetailsOperations {
 		cars.setName(bookingDto.getCarDetails().getName());
 		booking.setCarDetails(cars);
 		Customer customer = new Customer();
+		customer.setId(bookingDto.getCustomerDetails().getId());
 		customer.setCustomer_address(bookingDto.getCustomerDetails().getCustomer_address());
 		customer.setCustomer_name(bookingDto.getCustomerDetails().getCustomer_name());
 		customer.setCustomer_phone(bookingDto.getCustomerDetails().getCustomer_phone());

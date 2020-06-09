@@ -91,11 +91,6 @@ public class UserDetailsController {
 	public ResponseEntity<List<WasherDto>> addOrUpdateWasher(@RequestBody List<WasherDto> washerDtos) throws CaseStudyException {
 		return new ResponseEntity<>(washerOp.addOrUpdateWasher(washerDtos),HttpStatus.OK);
 	}
-	
-	@GetMapping("/washer/{status}")
-	public ResponseEntity<List<WasherDto>> activeOrInactiveWasher(@RequestBody List<WasherDto> washers) throws CaseStudyException {
-		return new ResponseEntity<>(washerOp.activeOrInactiveWasher(washers),HttpStatus.OK);
-	}
 
 	@GetMapping(value = "/washer/download/washerReport.xlsx")
     public ResponseEntity<InputStreamResource> excelWasherReport() throws CaseStudyException {

@@ -6,7 +6,7 @@ public class WasherDto {
 	private String emailId;
 	private float ratings;
 	private String name;
-	private long phoneNumber;
+	private String phoneNumber;
 	private String status;
 	public int getId() {
 		return id;
@@ -32,10 +32,10 @@ public class WasherDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getStatus() {

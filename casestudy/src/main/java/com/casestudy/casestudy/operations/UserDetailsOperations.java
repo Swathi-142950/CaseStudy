@@ -8,13 +8,19 @@ import org.springframework.stereotype.Service;
 
 import com.casestudy.casestudy.dto.UserDto;
 import com.casestudy.casestudy.model.User;
+import com.casestudy.casestudy.model.Washer;
 import com.casestudy.casestudy.repository.UserDetailsRepo;
+import com.casestudy.casestudy.repository.WashDetailsRepo;
+import com.casestudy.casestudy.repository.WasherRepo;
 
 @Service
 public class UserDetailsOperations {
 
 	@Autowired
 	UserDetailsRepo userDetailsRepo;
+	
+	@Autowired
+	WasherRepo washerDetailsRepo;
 	
 	public List<UserDto> fetchUsers() {
 		List<User> users = userDetailsRepo.findAll();
@@ -44,6 +50,16 @@ public class UserDetailsOperations {
 		user.setRole(userdto.getRole());
 		user.setUsername(userdto.getUsername());
 		user.setStatus(userdto.getStatus());
+		if (userdto.getRole().equalsIgnoreCase("washer")) {
+			Washer washer = new Washer();
+			washer.setEmailId(userdto.getEmail());
+			washer.setId(userdto.getId());
+			washer.setName(userdto.getFullname());
+			washer.setPhoneNumber(userdto.getPhoneno());
+			washer.setStatus(userdto.getStatus());
+			washer.setRatings(0.0f);
+			washerDetailsRepo.save(washer);
+		}
 		userDetailsRepo.save(user);
 		return userdto;
 	}
