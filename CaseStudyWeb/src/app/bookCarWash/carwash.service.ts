@@ -4,10 +4,10 @@ import { constants } from '../constants';
 import { User } from '../models/user.model';
 import { Customer } from '../models/customer.model';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class CarWashComponentService {
     constructor(private httpClient:HttpClient) {}
-    
+
     fetchCars() {
         return this.httpClient.get(constants.baseUrl + '/cars/fetchCars')
     }
@@ -32,6 +32,16 @@ export class CarWashComponentService {
 
     fetchCustomerDetailsById(customerId:number) {
         let url = constants.baseUrl + `/customers/getCustomerDetails/${customerId}`
+        return this.httpClient.get(url)
+    }
+
+    saveBookingDetails(bookingDetails:Object) {
+        let url = constants.baseUrl + `/booking/saveBookingDetails`
+        return this.httpClient.post(url, bookingDetails);
+    }
+
+    fetchWashers() {
+        let url = constants.baseUrl + `/users/washer/getWasher`
         return this.httpClient.get(url)
     }
 }

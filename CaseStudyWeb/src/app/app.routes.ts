@@ -3,7 +3,7 @@ import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signUp/signup.component";
 import { CustomerComponent } from "./bookCarWash/customer.component";
 import { CarwashComponent } from "./bookCarWash/carwash.component";
-import { PaymentComponent } from "./payment/payment.component";
+import { PaymentComponent } from "./bookCarWash/payment/payment.component";
 import { AdminPanelComponent } from "./adminPanel/admin.panel.component";
 import {Routes} from '@angular/router'
 import { adminRoute } from './adminPanel/admin.panel.route';

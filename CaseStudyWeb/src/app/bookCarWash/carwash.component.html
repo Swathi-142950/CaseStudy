@@ -103,6 +103,14 @@
           </tbody>
         </table>
       </div>
+      <div class="card">
+        <h5 class="card-header">Select Washer</h5>
+        <div class="card-body">
+          <select [(ngModel)]="washer">
+            <option *ngFor="let wash of washerList" [value]="wash.id">{{wash.name}}</option>
+          </select>
+        </div>
+      </div>
       <button class="btn btn-primary" (click)="proceedToPayment()">Proceed</button>
     </div>
   </div>

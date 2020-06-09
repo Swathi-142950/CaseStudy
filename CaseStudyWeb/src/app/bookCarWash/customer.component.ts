@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Customer } from '../models/customer.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,6 +11,7 @@ import { CarWashComponentService } from './carwash.service';
     providers:[CarWashComponentService]
 })
 export class CustomerComponent implements OnInit{
+    @Output() customerDetails:EventEmitter<any> = new EventEmitter();
     customerForm:FormGroup
     customerEditForm:FormGroup
     customerObj:Customer
@@ -65,6 +66,7 @@ export class CustomerComponent implements OnInit{
                 })
                 let newDate = new Date(data['customer_service_date'])
                 this.savedDate = newDate.toDateString()
+                localStorage.setItem('customerDetails', JSON.stringify(Object(data)))
             }
         })
         this.serviceTimeOptions = constants.timeSlots

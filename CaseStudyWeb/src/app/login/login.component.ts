@@ -40,8 +40,10 @@ export class LoginComponent {
                         alert('Please check your credentials again')
                     }
                     localStorage.setItem('currentUser', JSON.stringify(found));
-                } else {
+                } else if (found && found['status'] === 'invalid') {
                     alert('You account has been deactivated!! Please contact the customer care to know the reason and to activate!!')
+                } else {
+                    alert('Please check your credentials again')
                 }
             })
         }
