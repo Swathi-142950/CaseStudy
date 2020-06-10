@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 import com.casestudy.casestudy.dto.BookingDetailsDto;
 import com.casestudy.casestudy.dto.CarsDto;
 import com.casestudy.casestudy.dto.CustomerDto;
+import com.casestudy.casestudy.dto.WasherDto;
 import com.casestudy.casestudy.model.BookingDetails;
 import com.casestudy.casestudy.model.Cars;
 import com.casestudy.casestudy.model.Customer;
+import com.casestudy.casestudy.model.Washer;
 import com.casestudy.casestudy.repository.BookingRepo;
 
 @Service
@@ -38,6 +40,15 @@ public class BookingDetailsOperations {
 		customer.setCustomer_vehicle_number(bookingDto.getCustomerDetails().getCustomer_vehicle_number());
 		booking.setCustomerDetails(customer);
 		booking.setPayment(bookingDto.getPayment());
+		booking.setPackageDetails(bookingDto.getPackageDetails());
+		Washer washer = new Washer();
+		washer.setEmailId(bookingDto.getWasherDetails().getEmailId());
+		washer.setId(bookingDto.getWasherDetails().getId());
+		washer.setName(bookingDto.getWasherDetails().getName());
+		washer.setPhoneNumber(bookingDto.getWasherDetails().getPhoneNumber());
+		washer.setRatings(bookingDto.getWasherDetails().getRatings());
+		washer.setStatus(bookingDto.getWasherDetails().getStatus());
+		booking.setWasherDetails(washer);
 		Random random = new Random();
 		booking.setId(random.nextInt(1000));
 		bookingRepo.save(booking);
@@ -53,6 +64,7 @@ public class BookingDetailsOperations {
 			BookingDetailsDto bookingdto = new BookingDetailsDto();
 			CarsDto carsDto = new CarsDto();
 			CustomerDto customerDto = new CustomerDto();
+			WasherDto washerDto = new WasherDto();
 			carsDto.setBrand(bookingFetch.getCarDetails().getBrand());
 			carsDto.setCategory(bookingFetch.getCarDetails().getCategory());
 			carsDto.setName(bookingFetch.getCarDetails().getName());
@@ -62,8 +74,15 @@ public class BookingDetailsOperations {
 			customerDto.setCustomer_service_date(bookingFetch.getCustomerDetails().getCustomer_service_date());
 			customerDto.setCustomer_service_time(bookingFetch.getCustomerDetails().getCustomer_service_time());
 			customerDto.setCustomer_vehicle_number(bookingFetch.getCustomerDetails().getCustomer_vehicle_number());
+			washerDto.setEmailId(bookingFetch.getWasherDetails().getEmailId());
+			washerDto.setName(bookingFetch.getWasherDetails().getName());
+			washerDto.setPhoneNumber(bookingFetch.getWasherDetails().getPhoneNumber());
+			washerDto.setRatings(bookingFetch.getWasherDetails().getRatings());
+			washerDto.setStatus(bookingFetch.getWasherDetails().getStatus());
 			bookingdto.setCarDetails(carsDto);
+			bookingdto.setWasherDetails(washerDto);
 			bookingdto.setCustomerDetails(customerDto);
+			bookingdto.setPackageDetails(bookingFetch.getPackageDetails());
 			bookingdto.setPayment(bookingFetch.getPayment());
 			bookingListDto.add(bookingdto);
 		});

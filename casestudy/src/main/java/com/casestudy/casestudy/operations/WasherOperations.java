@@ -74,6 +74,18 @@ public class WasherOperations {
 		return getAllWashers();
 	}
 	
+	public WasherDto getWasherById(int id) {
+		WasherDto washerDto = new WasherDto();
+		Washer washer = washerRepo.findById(id);
+		washerDto.setEmailId(washer.getEmailId());
+		washerDto.setName(washer.getName());
+		washerDto.setId(id);
+		washerDto.setPhoneNumber(washer.getPhoneNumber());
+		washerDto.setRatings(washer.getRatings());
+		washerDto.setStatus(washer.getStatus());
+		return washerDto;
+	}
+	
 	public ByteArrayInputStream washerReportToExcelFile() throws CaseStudyException{
 		
 		try(Workbook workbook = new XSSFWorkbook()){

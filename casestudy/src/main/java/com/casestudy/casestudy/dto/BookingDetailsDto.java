@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.casestudy.casestudy.model.Cars;
 import com.casestudy.casestudy.model.Customer;
+import com.casestudy.casestudy.model.Washer;
 
 @Component
 public class BookingDetailsDto {
@@ -12,6 +13,8 @@ public class BookingDetailsDto {
 	private CustomerDto customerDetails;
 	private CarsDto carDetails;
 	private String payment;
+	private String packageDetails;
+	private WasherDto washerDetails;
 	public int getId() {
 		return id;
 	}
@@ -36,5 +39,18 @@ public class BookingDetailsDto {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
+	public String getPackageDetails() {
+		return packageDetails;
+	}
+	public void setPackageDetails(String packageDetails) {
+		this.packageDetails = packageDetails;
+	}
+	public WasherDto getWasherDetails() {
+		return washerDetails;
+	}
+	public void setWasherDetails(WasherDto washerDto) {
+		this.washerDetails = washerDto;
+	}
+	
 	
 }
