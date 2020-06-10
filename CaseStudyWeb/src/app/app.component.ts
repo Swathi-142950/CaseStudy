@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, DoCheck } from '@angular/core';
+import { Component, DoCheck, OnDestroy } from '@angular/core';
 
 @Component({
     selector: 'app-root',
@@ -6,16 +6,19 @@ import { Component, OnInit, OnChanges, DoCheck } from '@angular/core';
     providers: [
     ]
 })
-export class AppComponent implements DoCheck{
+export class AppComponent implements DoCheck, OnDestroy{
     localStorageValue:Object
     constructor(){
-        this.localStorageValue = localStorage.getItem('currentUser')
+        this.localStorageValue = sessionStorage.getItem('currentUser')
+    }
+    ngOnDestroy(): void {
+        sessionStorage.clear()
     }
     ngDoCheck(): void {
-        this.localStorageValue = localStorage.getItem('currentUser')
+        this.localStorageValue = sessionStorage.getItem('currentUser')
     }
     clearLocalStorage():void {
-        localStorage.removeItem('currentUser')
+        sessionStorage.removeItem('currentUser')
     } 
 }
 

@@ -76,7 +76,7 @@ export class CarwashComponent{
                 carData: carDataVal,
                 washer: this.washer
             }
-            localStorage.setItem('carDetails', JSON.stringify(obj))
+            sessionStorage.setItem('carDetails', JSON.stringify(obj))
             this.router.navigate(['/payment'])
         } else {
             alert('Please select package and car to proceed')

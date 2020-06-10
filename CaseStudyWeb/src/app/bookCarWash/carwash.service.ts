@@ -44,4 +44,9 @@ export class CarWashComponentService {
         let url = constants.baseUrl + `/users/washer/getWasher`
         return this.httpClient.get(url)
     }
+
+    getWasherById(id:number) {
+        let url = constants.baseUrl + `/users/washer/getWasherById/${id}`
+        return this.httpClient.get(url)
+    }
 }

@@ -39,7 +39,7 @@ export class LoginComponent {
                     } else {
                         alert('Please check your credentials again')
                     }
-                    localStorage.setItem('currentUser', JSON.stringify(found));
+                    sessionStorage.setItem('currentUser', JSON.stringify(found));
                 } else if (found && found['status'] === 'invalid') {
                     alert('You account has been deactivated!! Please contact the customer care to know the reason and to activate!!')
                 } else {
@@ -65,7 +65,7 @@ export class LoginComponent {
             console.log(res);
             this.socialusers = res;
             this.response = res.userDetail;
-            localStorage.setItem('socialusers', JSON.stringify(this.socialusers));
+            sessionStorage.setItem('socialusers', JSON.stringify(this.socialusers));
             this.router.navigate([`/Dashboard`]);
         })
     }

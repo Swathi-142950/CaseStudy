@@ -66,7 +66,7 @@ export class CustomerComponent implements OnInit{
                 })
                 let newDate = new Date(data['customer_service_date'])
                 this.savedDate = newDate.toDateString()
-                localStorage.setItem('customerDetails', JSON.stringify(Object(data)))
+                sessionStorage.setItem('customerDetails', JSON.stringify(Object(data)))
             }
         })
         this.serviceTimeOptions = constants.timeSlots
