@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { constants } from '../constants';
 
 @Injectable()
@@ -54,5 +54,10 @@ export class AdminPanelService {
     saveWasherList(washers) {
         let url = constants.baseUrl + '/users/updateUserList/washers'
         return this.httpClient.post(url, washers);
+    }
+
+    generateWasherReport() {
+        let url = constants.baseUrl + `/users/washer/download/washerReport.xlsx`
+        return this.httpClient.get(url)
     }
 }

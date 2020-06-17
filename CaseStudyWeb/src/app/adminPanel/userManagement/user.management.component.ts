@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminPanelService } from '../admin.panel.service';
 import * as _ from 'lodash';
+import {saveAs} from 'file-saver'
 
 @Component({
     templateUrl: 'user.management.component.html',
@@ -46,5 +47,12 @@ export class UserManagementComponent implements OnInit {
         this.adminService.saveWasherList(this.washers).subscribe(data => {
             this.washers = Object(data)
         })
+    }
+
+    generateWasherReport() {
+        this.adminService.generateWasherReport().subscribe((data:Blob) => {
+            const blobdownload = new Blob([data], { type: "application/xml.ms-excel;charset=utf-8" });
+            saveAs(blobdownload, 'testdata.xls');
+        })  
     }
 }

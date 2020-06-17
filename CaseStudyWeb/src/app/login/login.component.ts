@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import * as _ from 'lodash'
 import { Socialusers } from '../models/social.users.model';
-import { AuthServiceConfig, SocialLoginModule, AuthService, FacebookLoginProvider } from 'angularx-social-login'
+import { AuthService, FacebookLoginProvider } from 'angularx-social-login'
 import { SocialloginService } from '../security/social.login.service';
 
 @Component({
